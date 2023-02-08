@@ -16,8 +16,8 @@ export class DBConfigService implements TypeOrmOptionsFactory {
             port: this.configService.get('DB_PORT'),
             password: this.configService.get('DB_PASSWORD'),
             database: this.configService.get('DB_DATABASE'),
-            entities: ['dist/src/**/*.entity.js'],
-            migrations: ['dist/src/db/migrations/*.js'],
+            entities: ['dist/**/*.entity.js'],
+            migrations: ['dist/db/migrations/*.js'],
       
         }
     }

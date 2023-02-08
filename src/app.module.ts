@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { DBConfigService } from './DBConfigService';
 import { TypeOrmModule } from '@nestjs/typeorm/dist';
+import { dataSourceOptions } from './db/data-source';
 
 @Module({
   imports: [
@@ -13,12 +14,9 @@ import { TypeOrmModule } from '@nestjs/typeorm/dist';
     AuthModule,
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: '.development.env'
+      envFilePath: '.development.env',
     }),
-    TypeOrmModule.forRootAsync({
-      useClass: DBConfigService,
-      inject: [DBConfigService],
-    }),
+    TypeOrmModule.forRoot(dataSourceOptions),
   ],
   controllers: [AppController],
   providers: [AppService, DBConfigService],
